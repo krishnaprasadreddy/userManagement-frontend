@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="jumbotron" *ngIf="user">
+        <h1 class="display-4">Hello, {{user.firstName}} {{user.lastName}}!</h1>
+        <p class="lead">You are logged as {{user.email}} </p>
+        <hr class="my-4">
+        <p></p>
+        <a class="btn btn-primary btn-lg" [routerLink]="['/login']" role="button">Logout</a>
+    </div>
+</div>
