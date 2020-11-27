@@ -29,9 +29,10 @@ export class RegisterComponent implements OnInit {
     console.log(form);
     if (form.valid) {
       const user = form.value as user;
+      user.isAdmin = typeof(user.isAdmin) == "boolean" ? user.isAdmin: false;
       this.userService.createUser(user).subscribe(
         (res) => {
-          alert('successfully signedup please login');
+          alert('Sign-up successfull!. Please login');
           this.router.navigate(['login']);
         },
         (err: HttpErrorResponse) => {

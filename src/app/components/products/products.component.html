@@ -1,0 +1,26 @@
+<div>
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th> Price</th>
+            <th> Description</th>
+            <th *ngIf="isAdmin"> Options</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; index as i">
+                <td> {{i+1}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td [innerHTML]="truncate(product.description)"></td>
+                <td>
+                    <span>
+                        <a class="btn btn-link" *ngIf="isAdmin" (click)="edit(product)" role="button">Edit</a>
+                        <a class="btn btn-link " *ngIf="isAdmin" (click)="delete(product)" role="button">Delete</a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

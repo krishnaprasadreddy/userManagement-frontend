@@ -1,0 +1,42 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <p class="h4 mb-4 text-center">Add Product</p>
+        <hr>
+        <div class=" mb-4">
+            <div class="col">
+                <!-- First name -->
+                <label>Name :</label>
+                <input type="text" id="name" (keyup)="submitted = false" class="form-control" placeholder="Name"
+                    formControlName="name" required>
+                <small *ngIf="submitted && form.controls.name.errors && form.controls.name.errors.required" class="text-danger"> Name is required
+                </small>
+            </div>
+
+        </div>
+        <div class=" mb-4">
+            <div class="col">
+                <label>Price :</label>
+                <input type="number" id="price" (keyup)="submitted = false" class="form-control" placeholder="Price"
+                    formControlName="price" required>
+                <small *ngIf="submitted && form.controls.price.errors && form.controls.price.errors.required" class="text-danger">
+                    Price is required
+                </small>
+            </div>
+
+        </div>
+        <div class=" mb-4">
+            <div class="col">
+                <label>Description :</label>
+                <textarea id="description" class="form-control" placeholder="Description" formControlName="description"
+                    rows="2">
+                </textarea>
+            </div>
+        </div>
+
+        <div class="float-right">
+            <button type="submit" class="btn btn-light mr-1 " (click)="dismiss()">cancel</button>
+            <button type="submit" class="btn btn-primary ml-1 ">save</button>
+        </div>
+    </form>
+</div>

@@ -23,25 +23,29 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //alert("remove token");
-    this.cookieService.delete("token");
+    this.cookieService.delete('token');
   }
   onSubmit(form: NgForm) {
-    console.log("sub");
+    console.log('sub');
     this.submitted = true;
-  //  console.log(form.value);
+    //  console.log(form.value);
     if (form.valid) {
-      this.authService.login(form.value).subscribe(
-        (res) => {
-          console.log(res);
-          this.cookieService.set('token', res['token']);
-          this.router.navigate(['']);
-        },
-        (err: HttpErrorResponse) => {
-          if (err.status == 401) {
-            alert('Invalid credentials');
+      try {
+        this.authService.login(form.value).subscribe(
+          (res) => {
+            console.log(res);
+            this.cookieService.set('token', res['token']);
+            this.router.navigate(['']);
+          },
+          (err: HttpErrorResponse) => {
+            if (err.status == 401) {
+              alert('Invalid credentials');
+            }
           }
-        }
-      );
+        );
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

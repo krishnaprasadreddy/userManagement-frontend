@@ -1,9 +1,13 @@
-<div class="container">
-    <div class="jumbotron" *ngIf="user">
-        <h1 class="display-4">Hello, {{user.firstName}} {{user.lastName}}!</h1>
-        <p class="lead">You are logged as {{user.email}} </p>
-        <hr class="my-4">
-        <p></p>
-        <a class="btn btn-primary btn-lg" [routerLink]="['/login']" role="button">Logout</a>
+<div class="">
+    <div class="mb-3" *ngIf="user">
+        <div class="float-right" role="group" aria-label="Basic example">
+            <a class="btn btn-outline-dark mr-2" *ngIf="user.isAdmin" (click)="openModal()" role="button">Add
+                Product</a>
+            <a class="btn btn-outline-primary ml-1" [routerLink]="['/login']" role="button">Logout</a>
+        </div>
+        <h3>Hello, {{user.firstName}} {{user.lastName}}!</h3>
     </div>
+    <br>
+    <app-products *ngIf="products.length && showTable" [(isAdmin)]="user.isAdmin" [(products)]="products"
+        (editProduct)="editProduct($event)" (deleteProduct)="deleteProduct($event)"></app-products>
 </div>
